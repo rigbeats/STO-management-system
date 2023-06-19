@@ -32,11 +32,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Cost = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.totalCost = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -52,10 +52,10 @@
             this.listOfTasks.AllowUserToResizeRows = false;
             this.listOfTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listOfTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listOfTasks.Location = new System.Drawing.Point(7, 12);
+            this.listOfTasks.Location = new System.Drawing.Point(8, 19);
             this.listOfTasks.Name = "listOfTasks";
             this.listOfTasks.ReadOnly = true;
-            this.listOfTasks.Size = new System.Drawing.Size(347, 165);
+            this.listOfTasks.Size = new System.Drawing.Size(345, 165);
             this.listOfTasks.TabIndex = 3;
             // 
             // menuStrip1
@@ -151,7 +151,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.Cost);
+            this.groupBox2.Controls.Add(this.totalCost);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.listOfTasks);
             this.groupBox2.Location = new System.Drawing.Point(586, 423);
@@ -159,15 +159,6 @@
             this.groupBox2.Size = new System.Drawing.Size(360, 232);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            // 
-            // Cost
-            // 
-            this.Cost.BackColor = System.Drawing.SystemColors.Window;
-            this.Cost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Cost.Location = new System.Drawing.Point(214, 198);
-            this.Cost.Name = "Cost";
-            this.Cost.Size = new System.Drawing.Size(100, 20);
-            this.Cost.TabIndex = 5;
             // 
             // label3
             // 
@@ -206,6 +197,18 @@
             this.label5.Size = new System.Drawing.Size(60, 18);
             this.label5.TabIndex = 12;
             this.label5.Text = "Услуги:";
+            // 
+            // totalCost
+            // 
+            this.totalCost.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.totalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.totalCost.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.totalCost.Location = new System.Drawing.Point(214, 194);
+            this.totalCost.Name = "totalCost";
+            this.totalCost.ReadOnly = true;
+            this.totalCost.Size = new System.Drawing.Size(107, 25);
+            this.totalCost.TabIndex = 0;
+            this.totalCost.Text = "";
             // 
             // MainForm
             // 
@@ -250,10 +253,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox Cost;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RichTextBox totalCost;
     }
 }

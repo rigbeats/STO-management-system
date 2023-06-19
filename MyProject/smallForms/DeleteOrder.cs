@@ -23,14 +23,13 @@ namespace MyProject.smallForms
             InitializeComponent();
         }
 
-        private void No_Click(object sender, EventArgs e)
+        private void No_Click(object sender, EventArgs e) // обработка нажатия на кнопку "Нет"
         {
             this.Close();
         }
 
-        private void Yes_Click(object sender, EventArgs e)
+        private void Yes_Click(object sender, EventArgs e) // обработка нажатия на кнопку "Да"
         {
-            connectionString.Open();
             SqlCommand command = new SqlCommand(
                 "DELETE " +
                 "FROM Orders " +
@@ -38,7 +37,6 @@ namespace MyProject.smallForms
                 connectionString);
 
             command.ExecuteNonQuery();
-            connectionString.Close();
             this.Close();
         }
     }
