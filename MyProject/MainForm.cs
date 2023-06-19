@@ -30,21 +30,8 @@ namespace MyProject
         {
             serviceStationConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServiceStation"].ConnectionString);
 
-            try
-            {
-                serviceStationConnection.Open();
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так");
-            }
-
+            serviceStationConnection.Open();
             UpdateOrdersTable();
-
-
-
-
-            serviceStationConnection.Close();
         }
 
         private void Orders_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -55,7 +42,7 @@ namespace MyProject
         private void deleteButton_Click(object sender, EventArgs e)
         {
             if (row == null)
-                MessageBox.Show("Пожалуйста, выберите заказ, который хотите удалить");
+                MessageBox.Show("Выберите заявку, которую хотите удалить");
             else
             {
                 var form = new DeleteOrder((int)row.Cells[0].Value, serviceStationConnection);
@@ -64,6 +51,29 @@ namespace MyProject
                 row = null;
             }
         }
+
+        private void performButton_Click(object sender, EventArgs e)
+        {
+            if (row == null)
+                MessageBox.Show("Выберите заявку, которую хотите удалить");
+            else
+            {
+                SqlCommand command = new SqlCommand(
+                    "UPDATE Orders " +
+                    "SET Status = N'Выполнено' " +
+                    $"WHERE Id = '{row.Cells[0].Value}' ",
+                    serviceStationConnection);
+
+                command.ExecuteNonQuery();
+                UpdateOrdersTable();
+                row = null;
+            }
+        }
+
+
+
+
+
 
 
 
@@ -80,7 +90,8 @@ namespace MyProject
                 "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
                 "JOIN Models ON Orders.ModelId = Models.Id " +
                 "JOIN Users ON Orders.UserId = Users.Id " +
-                $"WHERE Users.Login = '{user.Login}' ",
+                $"WHERE Users.Login = '{user.Login}' " +
+                "AND Orders.Status = N'В процессе' ",
                 serviceStationConnection
                 );
 
