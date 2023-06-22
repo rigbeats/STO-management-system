@@ -25,6 +25,7 @@ namespace MyProject
         {
             InitializeComponent();
             this.user = user;
+            this.Text = "Станция технического обслуживания";
         }
 
         private void MainForm_Load(object sender, EventArgs e) //Загрузка формы
@@ -136,6 +137,17 @@ namespace MyProject
                 var cost = Convert.ToString(command.ExecuteScalar());
                 totalCost.AppendText(cost);
             }
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            EditOrder editOrder = new EditOrder();
+            editOrder.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

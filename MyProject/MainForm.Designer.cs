@@ -29,14 +29,14 @@
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.performButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.totalCost = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.totalCost = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -65,6 +65,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // orders
             // 
@@ -111,7 +112,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.performButton);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.editButton);
             this.groupBox1.Controls.Add(this.deleteButton);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(1005, 423);
@@ -130,14 +131,15 @@
             this.performButton.UseVisualStyleBackColor = true;
             this.performButton.Click += new System.EventHandler(this.performButton_Click);
             // 
-            // button2
+            // editButton
             // 
-            this.button2.Location = new System.Drawing.Point(35, 90);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 53);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Редактировать";
-            this.button2.UseVisualStyleBackColor = true;
+            this.editButton.Location = new System.Drawing.Point(35, 90);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(122, 53);
+            this.editButton.TabIndex = 1;
+            this.editButton.Text = "Редактировать";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // deleteButton
             // 
@@ -159,6 +161,18 @@
             this.groupBox2.Size = new System.Drawing.Size(360, 232);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
+            // 
+            // totalCost
+            // 
+            this.totalCost.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.totalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.totalCost.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.totalCost.Location = new System.Drawing.Point(214, 194);
+            this.totalCost.Name = "totalCost";
+            this.totalCost.ReadOnly = true;
+            this.totalCost.Size = new System.Drawing.Size(107, 25);
+            this.totalCost.TabIndex = 0;
+            this.totalCost.Text = "";
             // 
             // label3
             // 
@@ -197,18 +211,6 @@
             this.label5.Size = new System.Drawing.Size(60, 18);
             this.label5.TabIndex = 12;
             this.label5.Text = "Услуги:";
-            // 
-            // totalCost
-            // 
-            this.totalCost.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.totalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalCost.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.totalCost.Location = new System.Drawing.Point(214, 194);
-            this.totalCost.Name = "totalCost";
-            this.totalCost.ReadOnly = true;
-            this.totalCost.Size = new System.Drawing.Size(107, 25);
-            this.totalCost.TabIndex = 0;
-            this.totalCost.Text = "";
             // 
             // MainForm
             // 
@@ -250,7 +252,7 @@
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button performButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;

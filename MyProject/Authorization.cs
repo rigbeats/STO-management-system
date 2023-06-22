@@ -23,6 +23,7 @@ namespace MyProject
         {
             InitializeComponent();
             Size = new System.Drawing.Size(500, 300);
+            this.Text = "Станция технического обслуживания";
         }
 
         private void Authorization_Load(object sender, EventArgs e)
