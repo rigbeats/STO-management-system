@@ -20,7 +20,7 @@ namespace MyProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+                
         }
 
         private void editClose_Click(object sender, EventArgs e)
@@ -35,8 +35,18 @@ namespace MyProject
 
             //сюды будет текст
             help.SetLabelText("Здесь можно редактировать заявку");
+            
+            help.Show();            
+        }
 
-            help.Show();
+        private void orderedService_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }
