@@ -73,6 +73,48 @@ namespace MyProject
             }
         }
 
+        private void listOfMakes_DropDown(object sender, EventArgs e)
+        {
+            AddValuesInComboBox(
+               "SELECT Name FROM Makes",
+               listOfMakes);
+        }
+
+        private void listOfMakes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            AddValuesInComboBox(
+                "SELECT Models.Name " +
+                "FROM Models " +
+                "JOIN Makes ON Makes.Id = Models.MakeId " +
+                $"WHERE Makes.Name = '{listOfMakes.SelectedValue}' ",
+                listOfModels);
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (listOfModels.SelectedValue == null || listOfMakes.SelectedValue == null || registrationNumber.Text == "")
+                MessageBox.Show("Все поля должны быть заполнены");
+            else
+            {
+                SqlCommand addToOrders = new SqlCommand(
+                    "INSERT INTO Orders(UserId, MakeId, ModelId, Date, Status, RegistrationNumber) " +
+                    "SELECT " +
+                    $"(SELECT Id FROM Users WHERE Login = '{user.Login}'), " +
+                    $"(SELECT Id FROM Makes WHERE Name = '{listOfMakes.SelectedValue}'), " +
+                    $"(SELECT Id FROM Models WHERE Name = '{listOfModels.SelectedValue}')," +
+                    $"'{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}', " +
+                    "N'В процессе', " +
+                    $"'{registrationNumber.Text}';",
+                    serviceStationConnection);
+
+                addToOrders.ExecuteNonQuery();
+                UpdateOrdersTable();
+            }
+        }
+
+
+
+
 
 
 
@@ -145,9 +187,19 @@ namespace MyProject
             editOrder.Show();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void AddValuesInComboBox(string request, ComboBox comboBox)
         {
+            SqlCommand command = new SqlCommand(request, serviceStationConnection);
+            var strings = new List<string>();
 
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    strings.Add(reader.GetString(0));
+                }
+            }
+            comboBox.DataSource = strings;
         }
     }
 }

@@ -35,6 +35,13 @@
             this.totalCost = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.registrationNumber = new System.Windows.Forms.TextBox();
+            this.listOfModels = new System.Windows.Forms.ComboBox();
+            this.listOfMakes = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
@@ -42,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // listOfTasks
@@ -65,7 +73,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // orders
             // 
@@ -186,11 +193,85 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.addButton);
+            this.groupBox3.Controls.Add(this.registrationNumber);
+            this.groupBox3.Controls.Add(this.listOfModels);
+            this.groupBox3.Controls.Add(this.listOfMakes);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(30, 423);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(497, 232);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(354, 159);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(122, 53);
+            this.addButton.TabIndex = 20;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // registrationNumber
+            // 
+            this.registrationNumber.Location = new System.Drawing.Point(158, 119);
+            this.registrationNumber.Name = "registrationNumber";
+            this.registrationNumber.Size = new System.Drawing.Size(164, 20);
+            this.registrationNumber.TabIndex = 19;
+            // 
+            // listOfModels
+            // 
+            this.listOfModels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.listOfModels.FormattingEnabled = true;
+            this.listOfModels.Location = new System.Drawing.Point(157, 72);
+            this.listOfModels.Name = "listOfModels";
+            this.listOfModels.Size = new System.Drawing.Size(164, 21);
+            this.listOfModels.TabIndex = 18;
+            // 
+            // listOfMakes
+            // 
+            this.listOfMakes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.listOfMakes.FormattingEnabled = true;
+            this.listOfMakes.Location = new System.Drawing.Point(157, 22);
+            this.listOfMakes.Name = "listOfMakes";
+            this.listOfMakes.Size = new System.Drawing.Size(164, 21);
+            this.listOfMakes.TabIndex = 17;
+            this.listOfMakes.DropDown += new System.EventHandler(this.listOfMakes_DropDown);
+            this.listOfMakes.SelectionChangeCommitted += new System.EventHandler(this.listOfMakes_SelectionChangeCommitted);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(21, 118);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(90, 18);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Гос. номер:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(20, 71);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 18);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Модель авто:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(20, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 18);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Марка авто:";
             // 
             // label4
             // 
@@ -238,6 +319,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +343,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox totalCost;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.TextBox registrationNumber;
+        private System.Windows.Forms.ComboBox listOfModels;
+        private System.Windows.Forms.ComboBox listOfMakes;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
