@@ -66,15 +66,18 @@
             this.login.Name = "login";
             this.login.Size = new System.Drawing.Size(138, 30);
             this.login.TabIndex = 1;
+            this.login.Click += new System.EventHandler(this.login_Click);
+            this.login.Leave += new System.EventHandler(this.login_Leave);
             // 
             // password
             // 
             this.password.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password.Location = new System.Drawing.Point(269, 134);
             this.password.Name = "password";
-            this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(138, 30);
             this.password.TabIndex = 2;
+            this.password.Click += new System.EventHandler(this.password_Click);
+            this.password.Leave += new System.EventHandler(this.password_Leave);
             // 
             // EnterData
             // 

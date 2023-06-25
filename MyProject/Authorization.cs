@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace MyProject
@@ -35,6 +36,14 @@ namespace MyProject
             {
                 MessageBox.Show("Соединение с базой данных не установлено");
             }
+
+            login.Text = "Введите логин";
+            login.ForeColor = Color.Gray;
+            login.SelectionStart = 0;
+
+            password.Text = "Введите пароль";
+            password.ForeColor = Color.Gray;
+            password.SelectionStart = 0;
         }
 
         private void EnterData_Click(object sender, EventArgs e)
@@ -66,6 +75,44 @@ namespace MyProject
         public void open(object obj)
         {
             Application.Run(new MainForm((User)obj));
+        }
+
+        private void login_Click(object sender, EventArgs e)
+        {
+            if (login.Text == "Введите логин")
+            {
+                login.Text = "";
+                login.ForeColor = Color.Black;
+            }
+        }
+
+        private void password_Click(object sender, EventArgs e)
+        {
+            if (password.Text == "Введите пароль")
+            {
+                password.Text = "";
+                password.ForeColor = Color.Black;
+                password.PasswordChar = '*';
+            }
+        }
+
+        private void login_Leave(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(login.Text))
+            {
+                login.Text = "Введите логин";
+                login.ForeColor = Color.Gray;
+            }
+        }
+
+        private void password_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(password.Text))
+            {
+                password.Text = "Введите пароль";
+                password.ForeColor = Color.Gray;
+                password.PasswordChar = '\0' ;
+            }
         }
     }
 }
