@@ -34,11 +34,12 @@ namespace MyProject
             serviceStationConnection.Open();
 
             UpdateOrdersTable();
+            UpdateListOfTasksTable(0);
         }
 
         private void Orders_CellClick(object sender, DataGridViewCellEventArgs e) //Обработка нажатия на строку в верхней таблице
         {
-            UpdateListOfTasksTable(e);
+            UpdateListOfTasksTable(e.RowIndex);
         }
 
         private void deleteButton_Click(object sender, EventArgs e) //Обработка нажатия на кнопку "Удалить" заявку
@@ -124,6 +125,7 @@ namespace MyProject
                 "SELECT Orders.Id AS Id, " +
                 "Makes.Name AS 'Марка', " +
                 "Models.Name AS 'Модель', " +
+                "Orders.RegistrationNumber AS 'Гос. номер', " +
                 "Orders.Date AS 'Дата', " +
                 "Orders.Status AS 'Статус' " +
                 "FROM " +
@@ -139,13 +141,10 @@ namespace MyProject
             ordersDataAdapter.Fill(dataSet);
             orders.DataSource = dataSet.Tables[0];
             orders.Columns["Id"].Visible = false;
-            orders.ClearSelection();
         }
 
-        public void UpdateListOfTasksTable(DataGridViewCellEventArgs e) //Обновление значений в нижней таблице
+        public void UpdateListOfTasksTable(int rowIndex) //Обновление значений в нижней таблице
         {
-            int rowIndex = e.RowIndex;
-
             if (rowIndex >= 0 && rowIndex < orders.Rows.Count)
             {
                 totalCost.Clear();

@@ -104,7 +104,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(1025, 402);
+            this.label2.Location = new System.Drawing.Point(1022, 402);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 18);
             this.label2.TabIndex = 7;
@@ -122,7 +122,7 @@
             this.groupBox1.Controls.Add(this.editButton);
             this.groupBox1.Controls.Add(this.deleteButton);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox1.Location = new System.Drawing.Point(1005, 423);
+            this.groupBox1.Location = new System.Drawing.Point(1002, 423);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(193, 232);
             this.groupBox1.TabIndex = 8;
@@ -163,7 +163,7 @@
             this.groupBox2.Controls.Add(this.totalCost);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.listOfTasks);
-            this.groupBox2.Location = new System.Drawing.Point(586, 423);
+            this.groupBox2.Location = new System.Drawing.Point(542, 423);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(360, 232);
             this.groupBox2.TabIndex = 9;
@@ -200,15 +200,15 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(30, 423);
+            this.groupBox3.Location = new System.Drawing.Point(62, 423);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(497, 232);
+            this.groupBox3.Size = new System.Drawing.Size(382, 232);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(354, 159);
+            this.addButton.Location = new System.Drawing.Point(238, 158);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(122, 53);
             this.addButton.TabIndex = 20;
@@ -277,7 +277,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(27, 402);
+            this.label4.Location = new System.Drawing.Point(59, 402);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(170, 18);
             this.label4.TabIndex = 11;
@@ -287,7 +287,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(583, 402);
+            this.label5.Location = new System.Drawing.Point(539, 402);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 18);
             this.label5.TabIndex = 12;
