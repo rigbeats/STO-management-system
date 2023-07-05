@@ -33,6 +33,16 @@ namespace MyProject
             serviceStationConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServiceStation"].ConnectionString);
             serviceStationConnection.Open();
 
+            if (user.Login == "admin")
+            {
+                listOfMakes.Enabled = true;
+                listOfModels.Enabled = true;
+                listOfUsers.Enabled = true;
+                registrationNumber.Enabled = true;
+                addButton.Enabled = true;
+            }
+
+
             UpdateOrdersTable();
             UpdateListOfTasksTable(0);
         }
@@ -65,7 +75,7 @@ namespace MyProject
                 SqlCommand command = new SqlCommand(
                     "UPDATE Orders " +
                     "SET Status = N'Выполнено' " +
-                    $"WHERE Id = '{ row.Cells[0].Value }' ",
+                    $"WHERE Id = '{row.Cells[0].Value}' ",
                     serviceStationConnection);
 
                 command.ExecuteNonQuery();
@@ -91,6 +101,15 @@ namespace MyProject
                 listOfModels);
         }
 
+        private void listOfUsers_DropDown(object sender, EventArgs e)
+        {
+            AddValuesInComboBox(
+                "SELECT Users.Login " +
+                "FROM Users ",
+                listOfUsers
+                );
+        }
+
         private void addButton_Click(object sender, EventArgs e)
         {
             if (listOfModels.SelectedValue == null || listOfMakes.SelectedValue == null || registrationNumber.Text == "")
@@ -100,7 +119,7 @@ namespace MyProject
                 SqlCommand addToOrders = new SqlCommand(
                     "INSERT INTO Orders(UserId, MakeId, ModelId, Date, Status, RegistrationNumber) " +
                     "SELECT " +
-                    $"(SELECT Id FROM Users WHERE Login = '{user.Login}'), " +
+                    $"(SELECT Id FROM Users WHERE Login = '{listOfUsers.SelectedValue}'), " +
                     $"(SELECT Id FROM Makes WHERE Name = '{listOfMakes.SelectedValue}'), " +
                     $"(SELECT Id FROM Models WHERE Name = '{listOfModels.SelectedValue}')," +
                     $"'{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}', " +
@@ -110,6 +129,8 @@ namespace MyProject
 
                 addToOrders.ExecuteNonQuery();
                 UpdateOrdersTable();
+
+                MessageBox.Show("Заявка добавлена");
             }
         }
 
@@ -121,21 +142,44 @@ namespace MyProject
 
         public void UpdateOrdersTable() //Обновление значений в верхней таблице
         {
-            SqlDataAdapter ordersDataAdapter = new SqlDataAdapter(
-                "SELECT Orders.Id AS Id, " +
-                "Makes.Name AS 'Марка', " +
-                "Models.Name AS 'Модель', " +
-                "Orders.RegistrationNumber AS 'Гос. номер', " +
-                "Orders.Date AS 'Дата', " +
-                "Orders.Status AS 'Статус' " +
-                "FROM " +
-                "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
-                "JOIN Models ON Orders.ModelId = Models.Id " +
-                "JOIN Users ON Orders.UserId = Users.Id " +
-                $"WHERE Users.Login = '{ user.Login }' " +
-                "AND Orders.Status = N'В процессе' ",
-                serviceStationConnection
-                );
+            SqlDataAdapter ordersDataAdapter = null;
+
+            if (user.Login == "admin")
+            {
+                ordersDataAdapter = new SqlDataAdapter(
+                    "SELECT Orders.Id AS Id, " +
+                    "Makes.Name AS 'Марка', " +
+                    "Models.Name AS 'Модель', " +
+                    "Orders.RegistrationNumber AS 'Гос. номер', " +
+                    "Users.Login AS 'Пользователь', " +
+                    "Orders.Date AS 'Дата', " +
+                    "Orders.Status AS 'Статус' " +
+                    "FROM " +
+                    "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
+                    "JOIN Models ON Orders.ModelId = Models.Id " +
+                    "JOIN Users ON Orders.UserId = Users.Id ",
+                    serviceStationConnection
+                    );
+            }
+            else
+            {
+                ordersDataAdapter = new SqlDataAdapter(
+                    "SELECT Orders.Id AS Id, " +
+                    "Makes.Name AS 'Марка', " +
+                    "Models.Name AS 'Модель', " +
+                    "Orders.RegistrationNumber AS 'Гос. номер', " +
+                    "Users.Login AS 'Пользователь', " +
+                    "Orders.Date AS 'Дата', " +
+                    "Orders.Status AS 'Статус' " +
+                    "FROM " +
+                    "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
+                    "JOIN Models ON Orders.ModelId = Models.Id " +
+                    "JOIN Users ON Orders.UserId = Users.Id " +
+                    $"WHERE Users.Login = '{user.Login}' " +
+                    "AND Orders.Status = N'В процессе' ",
+                    serviceStationConnection
+                    );
+            }
 
             DataSet dataSet = new DataSet();
             ordersDataAdapter.Fill(dataSet);
@@ -158,9 +202,9 @@ namespace MyProject
                     "JOIN TypesOfWorks ON TypesOfWorks.Id = ListOfTasks.TypeOfWorkId " +
                     "JOIN Orders ON Orders.Id = ListOfTasks.OrderId " +
                     "JOIN Makes ON Makes.Id = Orders.MakeId " +
-                    $"WHERE Users.Login = '{ user.Login }' " +
-                    $"AND Makes.Name = '{ row.Cells[1].Value }' " +  //столбец с названем марки
-                    $"AND Orders.Id = '{row.Cells[0].Value }'",
+                    $"AND Makes.Name = '{row.Cells[1].Value}' " +  //столбец с названем марки
+                    $"WHERE Users.Login = '{user.Login}' " +
+                    $"AND Orders.Id = '{row.Cells[0].Value}'",
                     serviceStationConnection);
 
                 DataSet dataSet = new DataSet();
@@ -172,7 +216,7 @@ namespace MyProject
                     "SELECT SUM(Price) " +
                     "FROM TypesOfWorks " +
                     "JOIN ListOfTasks ON TypesOfWorks.Id = ListOfTasks.TypeOfWorkId " +
-                    $"WHERE OrderId = {row.Cells[0].Value } ",
+                    $"WHERE OrderId = {row.Cells[0].Value} ",
                     serviceStationConnection);
 
                 var cost = Convert.ToString(command.ExecuteScalar());
@@ -199,11 +243,6 @@ namespace MyProject
                 }
             }
             comboBox.DataSource = strings;
-        }
-
-        private void orders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
