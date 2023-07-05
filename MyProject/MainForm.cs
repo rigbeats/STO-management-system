@@ -182,7 +182,7 @@ namespace MyProject
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            EditOrder editOrder = new EditOrder();
+            EditOrder editOrder = new EditOrder(1, serviceStationConnection, user);
             editOrder.Show();
         }
 
@@ -199,6 +199,11 @@ namespace MyProject
                 }
             }
             comboBox.DataSource = strings;
+        }
+
+        private void orders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

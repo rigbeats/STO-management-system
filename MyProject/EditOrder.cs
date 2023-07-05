@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,15 +15,40 @@ namespace MyProject
 {
     public partial class EditOrder : Form
     {
-        public EditOrder()
+        int idOfOrder;
+        SqlConnection connectionString = null;
+        User user;
+        public EditOrder(int IdOfOrder, SqlConnection connectionStr, User user)
         {
+            this.idOfOrder = IdOfOrder;
+            connectionString = connectionStr;
             InitializeComponent();
             this.Text = "Редактирование заявки";
+            this.user = user;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-                
+            SqlDataAdapter ordersDataAdapter = new SqlDataAdapter(
+            $"SELECT Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks", 
+            connectionString);
+            DataSet dataSet = new DataSet();
+            ordersDataAdapter.Fill(dataSet);
+            gvListOfServices.DataSource = dataSet.Tables[0];
+            SqlDataAdapter ordersDataAdapter2 = new SqlDataAdapter(
+            "SELECT TypesOfWorks.Name AS 'Название', " +
+            "TypesOfWorks.Price AS 'Цeнa' " +
+            "FROM " +
+            "Users JOIN ListOfTasks ON Users.Id = ListOfTasks.UserId " +
+            "JOIN TypesOfWorks ON TypesOfWorks.Id = ListOfTasks.TypeOfWorkId " +
+            "JOIN Orders ON Orders.Id = ListOfTasks.OrderId " +
+            "JOIN Makes ON Makes.Id = Orders.MakeId "+
+            $"WHERE Users.Login = '{user.Login}' " +
+            $"AND Orders.Id = '{idOfOrder}'",
+            connectionString);
+            DataSet dataSet2 = new DataSet();
+            ordersDataAdapter2.Fill(dataSet2);
+            gvCurrentOrder.DataSource = dataSet2.Tables[0];
         }
 
         private void editClose_Click(object sender, EventArgs e)
@@ -47,6 +75,63 @@ namespace MyProject
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+        }
+
+        private void gvListOfServices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void gvCurrentOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonRemoveService_Click(object sender, EventArgs e)
+        {
+            // Check if a row is selected in gvCurrentOrder
+            if (gvCurrentOrder.SelectedRows.Count > 0)
+            {
+                // Remove the selected row from gvCurrentOrder
+                gvCurrentOrder.Rows.Remove(gvCurrentOrder.SelectedRows[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select a row in the Current Order.");
+            }
+        }
+
+        private void buttonAddService_Click(object sender, EventArgs e)
+        {
+            // Check if a row is selected in gvListOfServices
+            if (gvListOfServices.SelectedRows.Count > 0)
+            {
+                // Get the selected row from gvListOfServices
+                DataGridViewRow selectedRow = gvListOfServices.SelectedRows[0];
+
+                // Get the DataTable bound to gvCurrentOrder
+                DataTable dt = (DataTable)gvCurrentOrder.DataSource;
+
+                // Create a new row with the same schema as the DataTable
+                DataRow newRow = dt.NewRow();
+
+                // Copy the cell values from the selected row to the new row
+                for (int i = 0; i < selectedRow.Cells.Count; i++)
+                {
+                    newRow[i] = selectedRow.Cells[i].Value;
+                }
+
+                // Add the new row to the DataTable
+                dt.Rows.Add(newRow);
+
+                // Refresh the DataGridView to reflect the changes
+                gvCurrentOrder.Refresh();
+            }
+
+            else
+            {
+                MessageBox.Show("Please select a row in the Current Order table.");
+            }
         }
     }
 }

@@ -30,23 +30,23 @@
         {
             this.editHelp = new System.Windows.Forms.Button();
             this.editClose = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvListOfServices = new System.Windows.Forms.DataGridView();
             this.serviceList = new System.Windows.Forms.Label();
             this.orderedService = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.buttonRemoveService = new System.Windows.Forms.Button();
+            this.buttonAddService = new System.Windows.Forms.Button();
+            this.gvCurrentOrder = new System.Windows.Forms.DataGridView();
             this.totalSum = new System.Windows.Forms.Label();
             this.finishOrder = new System.Windows.Forms.Button();
             this.totalPrice = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListOfServices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCurrentOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // editHelp
             // 
             this.editHelp.Location = new System.Drawing.Point(12, 15);
-            this.editHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editHelp.Margin = new System.Windows.Forms.Padding(4);
             this.editHelp.Name = "editHelp";
             this.editHelp.Size = new System.Drawing.Size(100, 28);
             this.editHelp.TabIndex = 0;
@@ -57,7 +57,7 @@
             // editClose
             // 
             this.editClose.Location = new System.Drawing.Point(120, 15);
-            this.editClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editClose.Margin = new System.Windows.Forms.Padding(4);
             this.editClose.Name = "editClose";
             this.editClose.Size = new System.Drawing.Size(100, 28);
             this.editClose.TabIndex = 1;
@@ -65,15 +65,16 @@
             this.editClose.UseVisualStyleBackColor = true;
             this.editClose.Click += new System.EventHandler(this.editClose_Click);
             // 
-            // dataGridView1
+            // gvListOfServices
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 111);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(473, 315);
-            this.dataGridView1.TabIndex = 2;
+            this.gvListOfServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvListOfServices.Location = new System.Drawing.Point(12, 111);
+            this.gvListOfServices.Name = "gvListOfServices";
+            this.gvListOfServices.RowHeadersWidth = 51;
+            this.gvListOfServices.RowTemplate.Height = 24;
+            this.gvListOfServices.Size = new System.Drawing.Size(473, 315);
+            this.gvListOfServices.TabIndex = 2;
+            this.gvListOfServices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvListOfServices_CellContentClick);
             // 
             // serviceList
             // 
@@ -94,33 +95,36 @@
             this.orderedService.Text = "По заявке:";
             this.orderedService.Click += new System.EventHandler(this.orderedService_Click);
             // 
-            // button1
+            // buttonRemoveService
             // 
-            this.button1.Location = new System.Drawing.Point(491, 185);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 67);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonRemoveService.Location = new System.Drawing.Point(491, 185);
+            this.buttonRemoveService.Name = "buttonRemoveService";
+            this.buttonRemoveService.Size = new System.Drawing.Size(75, 67);
+            this.buttonRemoveService.TabIndex = 5;
+            this.buttonRemoveService.Text = "<----";
+            this.buttonRemoveService.UseVisualStyleBackColor = true;
+            this.buttonRemoveService.Click += new System.EventHandler(this.buttonRemoveService_Click);
             // 
-            // button2
+            // buttonAddService
             // 
-            this.button2.Location = new System.Drawing.Point(491, 297);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 67);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonAddService.Location = new System.Drawing.Point(491, 297);
+            this.buttonAddService.Name = "buttonAddService";
+            this.buttonAddService.Size = new System.Drawing.Size(75, 67);
+            this.buttonAddService.TabIndex = 6;
+            this.buttonAddService.Text = "---->";
+            this.buttonAddService.UseVisualStyleBackColor = true;
+            this.buttonAddService.Click += new System.EventHandler(this.buttonAddService_Click);
             // 
-            // dataGridView2
+            // gvCurrentOrder
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(572, 111);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(483, 315);
-            this.dataGridView2.TabIndex = 7;
+            this.gvCurrentOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvCurrentOrder.Location = new System.Drawing.Point(572, 111);
+            this.gvCurrentOrder.Name = "gvCurrentOrder";
+            this.gvCurrentOrder.RowHeadersWidth = 51;
+            this.gvCurrentOrder.RowTemplate.Height = 24;
+            this.gvCurrentOrder.Size = new System.Drawing.Size(483, 315);
+            this.gvCurrentOrder.TabIndex = 7;
+            this.gvCurrentOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCurrentOrder_CellContentClick);
             // 
             // totalSum
             // 
@@ -157,20 +161,20 @@
             this.Controls.Add(this.totalPrice);
             this.Controls.Add(this.finishOrder);
             this.Controls.Add(this.totalSum);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.gvCurrentOrder);
+            this.Controls.Add(this.buttonAddService);
+            this.Controls.Add(this.buttonRemoveService);
             this.Controls.Add(this.orderedService);
             this.Controls.Add(this.serviceList);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gvListOfServices);
             this.Controls.Add(this.editClose);
             this.Controls.Add(this.editHelp);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditOrder";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListOfServices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCurrentOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,12 +184,12 @@
 
         private System.Windows.Forms.Button editHelp;
         private System.Windows.Forms.Button editClose;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvListOfServices;
         private System.Windows.Forms.Label serviceList;
         private System.Windows.Forms.Label orderedService;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button buttonRemoveService;
+        private System.Windows.Forms.Button buttonAddService;
+        private System.Windows.Forms.DataGridView gvCurrentOrder;
         private System.Windows.Forms.Label totalSum;
         private System.Windows.Forms.Button finishOrder;
         private System.Windows.Forms.Label totalPrice;
