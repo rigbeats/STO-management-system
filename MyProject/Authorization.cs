@@ -29,10 +29,12 @@ namespace MyProject
 
         private void Authorization_Load(object sender, EventArgs e)
         {
+            EnterData.Select();
+
             serviceStationConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ServiceStation"].ConnectionString);
             serviceStationConnection.Open();
 
-            if(serviceStationConnection.State == ConnectionState.Closed)
+            if (serviceStationConnection.State == ConnectionState.Closed)
             {
                 MessageBox.Show("Соединение с базой данных не установлено");
             }
@@ -44,6 +46,7 @@ namespace MyProject
             password.Text = "Введите пароль";
             password.ForeColor = Color.Gray;
             password.SelectionStart = 0;
+
         }
 
         private void EnterData_Click(object sender, EventArgs e)
@@ -98,7 +101,7 @@ namespace MyProject
 
         private void login_Leave(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(login.Text))
+            if (string.IsNullOrEmpty(login.Text))
             {
                 login.Text = "Введите логин";
                 login.ForeColor = Color.Gray;
@@ -111,7 +114,7 @@ namespace MyProject
             {
                 password.Text = "Введите пароль";
                 password.ForeColor = Color.Gray;
-                password.PasswordChar = '\0' ;
+                password.PasswordChar = '\0';
             }
         }
     }
