@@ -44,12 +44,14 @@ namespace MyProject
 
 
             UpdateOrdersTable();
-            UpdateListOfTasksTable(0);
+            row = orders.Rows[0];
+            UpdateListOfTasksTable();
         }
 
         private void Orders_CellClick(object sender, DataGridViewCellEventArgs e) //Обработка нажатия на строку в верхней таблице
         {
-            UpdateListOfTasksTable(e.RowIndex);
+            row = orders.Rows[e.RowIndex];
+            UpdateListOfTasksTable();
         }
 
         private void deleteButton_Click(object sender, EventArgs e) //Обработка нажатия на кнопку "Удалить" заявку
@@ -184,15 +186,14 @@ namespace MyProject
             DataSet dataSet = new DataSet();
             ordersDataAdapter.Fill(dataSet);
             orders.DataSource = dataSet.Tables[0];
-            //orders.Columns["Id"].Visible = false;
+            orders.Columns["Id"].Visible = false;
         }
 
-        public void UpdateListOfTasksTable(int rowIndex) //Обновление значений в нижней таблице
+        public void UpdateListOfTasksTable() //Обновление значений в нижней таблице
         {
-            if (rowIndex >= 0 && rowIndex < orders.Rows.Count)
+            if (row.Index >= 0 && row.Index < orders.Rows.Count)
             {
                 totalCost.Clear();
-                row = orders.Rows[rowIndex];
 
                 SqlDataAdapter listOfTasksAdapter = new SqlDataAdapter(
                     "SELECT TypesOfWorks.Name AS 'Название', " +
@@ -230,7 +231,7 @@ namespace MyProject
                 MessageBox.Show("Выберите заявку, которую хотите удалить");
             else
             {
-                EditOrder editOrder = new EditOrder((int)row.Cells[0].Value, serviceStationConnection, user);
+                EditOrder editOrder = new EditOrder((int)row.Cells[0].Value, serviceStationConnection, user, this);
                 editOrder.Show();
             }
         }
