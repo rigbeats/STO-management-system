@@ -103,29 +103,21 @@ namespace MyProject
 
         private void buttonAddService_Click(object sender, EventArgs e)
         {
-            // Check if a row is selected in gvListOfServices
             if (gvListOfServices.SelectedRows.Count > 0)
             {
-                // Get the selected row from gvListOfServices
-                DataGridViewRow selectedRow = gvListOfServices.SelectedRows[0];
+                var row = gvListOfServices.SelectedRows[0];
 
-                // Get the DataTable bound to gvCurrentOrder
-                DataTable dt = (DataTable)gvCurrentOrder.DataSource;
 
-                // Create a new row with the same schema as the DataTable
-                DataRow newRow = dt.NewRow();
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO ListOfTasks (UserId, TypeOfWorkId, OrderId)" +
+                    "SELECT " +
+                    $"(SELECT Id FROM Users WHERE Login = N'{ user.Login }'), " +
+                    $"(SELECT Id FROM TypesOfWorks WHERE Name = N'{ row.Cells[0].Value }'), " +
+                    $"{ idOfOrder } ",
+                    connectionString
+                    );
 
-                // Copy the cell values from the selected row to the new row
-                for (int i = 0; i < selectedRow.Cells.Count; i++)
-                {
-                    newRow[i] = selectedRow.Cells[i].Value;
-                }
-
-                // Add the new row to the DataTable
-                dt.Rows.Add(newRow);
-
-                // Refresh the DataGridView to reflect the changes
-                gvCurrentOrder.Refresh();
+                cmd.ExecuteNonQuery();
             }
 
             else
