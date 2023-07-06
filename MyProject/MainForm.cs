@@ -184,7 +184,7 @@ namespace MyProject
             DataSet dataSet = new DataSet();
             ordersDataAdapter.Fill(dataSet);
             orders.DataSource = dataSet.Tables[0];
-            orders.Columns["Id"].Visible = false;
+            //orders.Columns["Id"].Visible = false;
         }
 
         public void UpdateListOfTasksTable(int rowIndex) //Обновление значений в нижней таблице
@@ -226,8 +226,13 @@ namespace MyProject
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            EditOrder editOrder = new EditOrder(1, serviceStationConnection, user);
-            editOrder.Show();
+            if (row == null)
+                MessageBox.Show("Выберите заявку, которую хотите удалить");
+            else
+            {
+                EditOrder editOrder = new EditOrder((int)row.Cells[0].Value, serviceStationConnection, user);
+                editOrder.Show();
+            }
         }
 
         private void AddValuesInComboBox(string request, ComboBox comboBox)
