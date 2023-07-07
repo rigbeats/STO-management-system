@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using MyProject.smallForms;
 
@@ -159,7 +160,8 @@ namespace MyProject
                     "FROM " +
                     "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
                     "JOIN Models ON Orders.ModelId = Models.Id " +
-                    "JOIN Users ON Orders.UserId = Users.Id ",
+                    "JOIN Users ON Orders.UserId = Users.Id " +
+                    "ORDER BY Orders.Date DESC ",
                     serviceStationConnection
                     );
             }
@@ -178,7 +180,8 @@ namespace MyProject
                     "JOIN Models ON Orders.ModelId = Models.Id " +
                     "JOIN Users ON Orders.UserId = Users.Id " +
                     $"WHERE Users.Login = '{user.Login}' " +
-                    "AND Orders.Status = N'В процессе' ",
+                    "AND Orders.Status = N'В процессе' " +
+                    "ORDER BY Orders.Date DESC ",
                     serviceStationConnection
                     );
             }
