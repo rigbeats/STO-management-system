@@ -89,11 +89,21 @@ namespace MyProject
 
         private void buttonRemoveService_Click(object sender, EventArgs e)
         {
+            var row = gvCurrentOrder.SelectedRows[0];
             // Check if a row is selected in gvCurrentOrder
             if (gvCurrentOrder.SelectedRows.Count > 0)
             {
                 // Remove the selected row from gvCurrentOrder
                 gvCurrentOrder.Rows.Remove(gvCurrentOrder.SelectedRows[0]);
+                SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM ListOfTasks WHERE id = " +
+                    $"{idOfOrder}",
+                    connectionString
+                    );
+
+                // Refresh the DataGridView to reflect the changes
+                gvCurrentOrder.Refresh();
+                cmd.ExecuteNonQuery();
             }
             else
             {
@@ -107,6 +117,20 @@ namespace MyProject
             {
                 var row = gvListOfServices.SelectedRows[0];
 
+                // Get the DataTable bound to gvCurrentOrder
+                DataTable dt = (DataTable)gvCurrentOrder.DataSource;
+
+                // Create a new row with the same schema as the DataTable
+                DataRow newRow = dt.NewRow();
+
+                // Copy the cell values from the selected row to the new row
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    newRow[i] = row.Cells[i].Value;
+                }
+
+                // Add the new row to the DataTable
+                dt.Rows.Add(newRow);
 
                 SqlCommand cmd = new SqlCommand(
                     "INSERT INTO ListOfTasks (UserId, TypeOfWorkId, OrderId)" +
@@ -117,6 +141,8 @@ namespace MyProject
                     connectionString
                     );
 
+                // Refresh the DataGridView to reflect the changes
+                gvCurrentOrder.Refresh();
                 cmd.ExecuteNonQuery();
             }
 
