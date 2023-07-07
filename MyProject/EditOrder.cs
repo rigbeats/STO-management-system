@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -98,12 +99,12 @@ namespace MyProject
                 // Remove the selected row from gvCurrentOrder
                 gvCurrentOrder.Rows.Remove(gvCurrentOrder.SelectedRows[0]);
                 SqlCommand cmd = new SqlCommand(
-                    "DELETE FROM ListOfTasks WHERE id = " +
-                    $"{idOfOrder}",
+                    "DELETE FROM ListOfTasks " +
+                    $"WHERE UserId = (SELECT Id FROM Users WHERE Login = N'{user.Login}')  " +
+                    $"AND TypeOfWorkId = (SELECT Id FROM TypesOfWorks WHERE Name = N'{row.Cells[0].Value}')  " +
+                    $"AND OrderId = {idOfOrder} ",
                     connectionString
                     );
-
-                // Refresh the DataGridView to reflect the changes
                 gvCurrentOrder.Refresh();
                 cmd.ExecuteNonQuery();
             }
