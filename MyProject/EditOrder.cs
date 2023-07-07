@@ -18,13 +18,15 @@ namespace MyProject
         int idOfOrder;
         SqlConnection connectionString = null;
         User user;
-        public EditOrder(int IdOfOrder, SqlConnection connectionStr, User user)
+        MainForm form1 = null;
+        public EditOrder(int IdOfOrder, SqlConnection connectionStr, User user, MainForm form)
         {
             this.idOfOrder = IdOfOrder;
             connectionString = connectionStr;
             InitializeComponent();
             this.Text = "Редактирование заявки";
             this.user = user;
+            this.form1 = form;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -150,6 +152,11 @@ namespace MyProject
             {
                 MessageBox.Show("Please select a row in the Current Order table.");
             }
+        }
+
+        private void EditOrder_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form1.UpdateListOfTasksTable();
         }
     }
 }
