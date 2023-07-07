@@ -71,6 +71,7 @@
             this.gvListOfServices.Name = "gvListOfServices";
             this.gvListOfServices.RowHeadersWidth = 51;
             this.gvListOfServices.RowTemplate.Height = 24;
+            this.gvListOfServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvListOfServices.Size = new System.Drawing.Size(355, 256);
             this.gvListOfServices.TabIndex = 2;
             this.gvListOfServices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvListOfServices_CellContentClick);
@@ -126,6 +127,7 @@
             this.gvCurrentOrder.Name = "gvCurrentOrder";
             this.gvCurrentOrder.RowHeadersWidth = 51;
             this.gvCurrentOrder.RowTemplate.Height = 24;
+            this.gvCurrentOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvCurrentOrder.Size = new System.Drawing.Size(362, 256);
             this.gvCurrentOrder.TabIndex = 7;
             this.gvCurrentOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCurrentOrder_CellContentClick);
