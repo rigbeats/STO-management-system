@@ -41,6 +41,7 @@ namespace MyProject
                 listOfUsers.Enabled = true;
                 registrationNumber.Enabled = true;
                 addButton.Enabled = true;
+                ToolStripMenuItem.Enabled = true;
             }
 
 
@@ -252,6 +253,20 @@ namespace MyProject
                 }
             }
             comboBox.DataSource = strings;
+        }
+
+        private void Makes_Click(object sender, EventArgs e)
+        {
+            EditMakes edit = new EditMakes(serviceStationConnection);
+            edit.Show();
+        }
+
+        private void Models_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Services_Click(object sender, EventArgs e)
+        {
         }
     }
 }
