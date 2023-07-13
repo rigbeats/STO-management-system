@@ -31,7 +31,7 @@ namespace MyProject.smallForms
                 "Models JOIN Makes ON Models.MakeId = Makes.Id ");
 
             UpdateComboBox(
-                "SELECT Name FROM Makes ",
+                "SELECT Name FROM Makes ORDER BY Name",
                 listOfMakes);
         }
 
