@@ -269,7 +269,8 @@ namespace MyProject
 
         private void Services_Click(object sender, EventArgs e)
         {
-
+            EditTypesOfWorks editTypesOfWorks = new EditTypesOfWorks(serviceStationConnection);
+            editTypesOfWorks.Show();
         }
     }
 }

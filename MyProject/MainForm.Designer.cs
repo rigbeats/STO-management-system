@@ -51,6 +51,7 @@
             this.Makes = new System.Windows.Forms.ToolStripMenuItem();
             this.Models = new System.Windows.Forms.ToolStripMenuItem();
             this.Services = new System.Windows.Forms.ToolStripMenuItem();
+            this.аккаунтыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -347,7 +348,8 @@
             this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Makes,
             this.Models,
-            this.Services});
+            this.Services,
+            this.аккаунтыToolStripMenuItem});
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
             this.ToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
             this.ToolStripMenuItem.Text = "Администрирование";
@@ -355,23 +357,29 @@
             // Makes
             // 
             this.Makes.Name = "Makes";
-            this.Makes.Size = new System.Drawing.Size(145, 22);
+            this.Makes.Size = new System.Drawing.Size(180, 22);
             this.Makes.Text = "Марки авто";
             this.Makes.Click += new System.EventHandler(this.Makes_Click);
             // 
             // Models
             // 
             this.Models.Name = "Models";
-            this.Models.Size = new System.Drawing.Size(145, 22);
+            this.Models.Size = new System.Drawing.Size(180, 22);
             this.Models.Text = "Модели авто";
             this.Models.Click += new System.EventHandler(this.Models_Click);
             // 
             // Services
             // 
             this.Services.Name = "Services";
-            this.Services.Size = new System.Drawing.Size(145, 22);
+            this.Services.Size = new System.Drawing.Size(180, 22);
             this.Services.Text = "Услуги";
             this.Services.Click += new System.EventHandler(this.Services_Click);
+            // 
+            // аккаунтыToolStripMenuItem
+            // 
+            this.аккаунтыToolStripMenuItem.Name = "аккаунтыToolStripMenuItem";
+            this.аккаунтыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.аккаунтыToolStripMenuItem.Text = "Аккаунты";
             // 
             // MainForm
             // 
@@ -440,5 +448,6 @@
         private System.Windows.Forms.ToolStripMenuItem Makes;
         private System.Windows.Forms.ToolStripMenuItem Models;
         private System.Windows.Forms.ToolStripMenuItem Services;
+        private System.Windows.Forms.ToolStripMenuItem аккаунтыToolStripMenuItem;
     }
 }
