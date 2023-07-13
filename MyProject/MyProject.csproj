@@ -101,6 +101,12 @@
     <Compile Include="smallForms\EditMakes.Designer.cs">
       <DependentUpon>EditMakes.cs</DependentUpon>
     </Compile>
+    <Compile Include="smallForms\EditModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="smallForms\EditModels.Designer.cs">
+      <DependentUpon>EditModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="smallForms\EditMakes.resx">
       <DependentUpon>EditMakes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="smallForms\EditModels.resx">
+      <DependentUpon>EditModels.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

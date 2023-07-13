@@ -257,16 +257,19 @@ namespace MyProject
 
         private void Makes_Click(object sender, EventArgs e)
         {
-            EditMakes edit = new EditMakes(serviceStationConnection);
-            edit.Show();
+            EditMakes editMakes = new EditMakes(serviceStationConnection);
+            editMakes.Show();
         }
 
         private void Models_Click(object sender, EventArgs e)
         {
+            EditModels editModels = new EditModels(serviceStationConnection);
+            editModels.Show();
         }
 
         private void Services_Click(object sender, EventArgs e)
         {
+
         }
     }
 }

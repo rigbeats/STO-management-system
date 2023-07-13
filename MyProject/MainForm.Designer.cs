@@ -355,21 +355,21 @@
             // Makes
             // 
             this.Makes.Name = "Makes";
-            this.Makes.Size = new System.Drawing.Size(180, 22);
+            this.Makes.Size = new System.Drawing.Size(145, 22);
             this.Makes.Text = "Марки авто";
             this.Makes.Click += new System.EventHandler(this.Makes_Click);
             // 
             // Models
             // 
             this.Models.Name = "Models";
-            this.Models.Size = new System.Drawing.Size(180, 22);
+            this.Models.Size = new System.Drawing.Size(145, 22);
             this.Models.Text = "Модели авто";
             this.Models.Click += new System.EventHandler(this.Models_Click);
             // 
             // Services
             // 
             this.Services.Name = "Services";
-            this.Services.Size = new System.Drawing.Size(180, 22);
+            this.Services.Size = new System.Drawing.Size(145, 22);
             this.Services.Text = "Услуги";
             this.Services.Click += new System.EventHandler(this.Services_Click);
             // 
