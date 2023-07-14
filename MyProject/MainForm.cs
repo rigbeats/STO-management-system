@@ -250,5 +250,10 @@ namespace MyProject
             }
             comboBox.DataSource = strings;
         }
+
+        private void orders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
