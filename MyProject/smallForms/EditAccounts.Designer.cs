@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.delete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.EditPassword = new System.Windows.Forms.TextBox();
             this.EditLogin = new System.Windows.Forms.TextBox();
             this.EditButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.AddPassword = new System.Windows.Forms.TextBox();
             this.AddLogin = new System.Windows.Forms.TextBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.accounts = new System.Windows.Forms.DataGridView();
             this.SearchAccount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.delete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accounts)).BeginInit();
@@ -63,6 +63,16 @@
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Внесение изменений";
+            // 
+            // delete
+            // 
+            this.delete.Location = new System.Drawing.Point(14, 90);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(122, 31);
+            this.delete.TabIndex = 27;
+            this.delete.Text = "Удалить";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // label4
             // 
@@ -121,6 +131,26 @@
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Добавление аккаунта";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(16, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 18);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Пароль:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(27, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 18);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Логин:";
             // 
             // AddPassword
             // 
@@ -181,36 +211,6 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "Поиск:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(16, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 18);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Пароль:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(27, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 18);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Логин:";
-            // 
-            // delete
-            // 
-            this.delete.Location = new System.Drawing.Point(14, 90);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(122, 31);
-            this.delete.TabIndex = 27;
-            this.delete.Text = "Удалить";
-            this.delete.UseVisualStyleBackColor = true;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
-            // 
             // EditAccounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,6 +222,7 @@
             this.Controls.Add(this.SearchAccount);
             this.Controls.Add(this.label1);
             this.Name = "EditAccounts";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.EditAccounts_Load);
             this.groupBox2.ResumeLayout(false);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,10 +25,10 @@ namespace MyProject.smallForms
 
         private void EditService_Load(object sender, EventArgs e)
         {
-            UpdateMakesTable("SELECT Name, Price FROM TypesOfWorks");
+            UpdateMakesTable("SELECT Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks");
         }
 
-        public void UpdateMakesTable(string request) //Обновление значений в верхней таблице
+        public void UpdateMakesTable(string request)
         {
             SqlDataAdapter ordersDataAdapter = new SqlDataAdapter(
                     request,
@@ -42,7 +43,7 @@ namespace MyProject.smallForms
         private void SearchMake_TextChanged(object sender, EventArgs e)
         {
             UpdateMakesTable(
-                "SELECT Name, Price FROM TypesOfWorks " +
+                "SELECT Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks " +
                 $"WHERE Name LIKE N'%{SearchService.Text}%' ");
         }
 
@@ -62,42 +63,74 @@ namespace MyProject.smallForms
                 MessageBox.Show("Выберите название услуги, которую хотите изменить");
             else
             {
-                SqlCommand sqlCommand = new SqlCommand(
-                "UPDATE TypesOfWorks " +
-                $"SET " +
-                $"Name = N'{EditName.Text}', " +
-                $"Price = N'{EditPrice.Text}' " +
-                $"WHERE Name = N'{selectedRow.Cells[0].Value}' ",
-                serviceStationConnection);
+                bool makeAlreadyExists = false;
 
-                sqlCommand.ExecuteNonQuery();
+                foreach (DataGridViewRow checkingRow in Services.Rows)
+                {
+                    if (checkingRow.Cells["Название"].Value.ToString() == EditName.Text)
+                    {
+                        makeAlreadyExists = true;
+                        break;
+                    }
+                }
 
-                string requestion;
-                if (SearchService.Text == "")
-                    requestion = "Select Name, Price FROM TypesOfWorks";
+                if (makeAlreadyExists)
+                    MessageBox.Show("Услуга с таким названием уже существует");
                 else
-                    requestion = "SELECT Name, Price FROM TypesOfWorks " +
-                    $"WHERE Name LIKE N'%{SearchService.Text}%' ";
+                {
+                    SqlCommand sqlCommand = new SqlCommand(
+                    "UPDATE TypesOfWorks " +
+                    $"SET " +
+                    $"Name = N'{EditName.Text}', " +
+                    $"Price = N'{EditPrice.Text}' " +
+                    $"WHERE Name = N'{selectedRow.Cells[0].Value}' ",
+                    serviceStationConnection);
 
-                UpdateMakesTable(requestion);
-                EditName.Text = "";
-                EditPrice.Text = "";
-                selectedRow = null;
+                    sqlCommand.ExecuteNonQuery();
+
+                    string requestion;
+                    if (SearchService.Text == "")
+                        requestion = "Select Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks";
+                    else
+                        requestion = "SELECT Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks " +
+                        $"WHERE Name LIKE N'%{SearchService.Text}%' ";
+
+                    UpdateMakesTable(requestion);
+                    EditName.Text = "";
+                    EditPrice.Text = "";
+                    selectedRow = null;
+                }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            SqlCommand sqlCommand = new SqlCommand(
+            bool makeAlreadyExists = false;
+
+            foreach (DataGridViewRow checkingRow in Services.Rows)
+            {
+                if (checkingRow.Cells["Название"].Value.ToString() == AddName.Text)
+                {
+                    makeAlreadyExists = true;
+                    break;
+                }
+            }
+
+            if (makeAlreadyExists)
+                MessageBox.Show("Услуга с таким названием уже существует");
+            else
+            {
+                SqlCommand sqlCommand = new SqlCommand(
                 "INSERT INTO TypesOfWorks (Name, Price)" +
                 $"VALUES (N'{AddName.Text}', {AddPrice.Text}) ",
                 serviceStationConnection);
 
-            sqlCommand.ExecuteNonQuery();
-            UpdateMakesTable("Select Name, Price FROM TypesOfWorks");
-            AddName.Text = "";
-            AddPrice.Text = "";
-            MessageBox.Show("Услуга успешно добавлена");
+                sqlCommand.ExecuteNonQuery();
+                UpdateMakesTable("Select Name AS 'Название', Price AS 'Цена' FROM TypesOfWorks");
+                AddName.Text = "";
+                AddPrice.Text = "";
+                MessageBox.Show("Услуга успешно добавлена");
+            }
         }
     }
 }

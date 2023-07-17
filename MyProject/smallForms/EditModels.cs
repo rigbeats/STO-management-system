@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -72,51 +73,83 @@ namespace MyProject.smallForms
                 MessageBox.Show("Выберите название модели, которое хотите изменить");
             else
             {
-                SqlCommand sqlCommand = new SqlCommand(
-                "UPDATE Models " +
-                $"SET Name = '{EditString.Text}' " +
-                $"WHERE Name = '{selectedRow.Cells[0].Value}' ",
-                serviceStationConnection);
+                bool makeAlreadyExists = false;
 
-                sqlCommand.ExecuteNonQuery();
+                foreach (DataGridViewRow checkingRow in Models.Rows)
+                {
+                    if (checkingRow.Cells["Модель"].Value.ToString() == EditString.Text)
+                    {
+                        makeAlreadyExists = true;
+                        break;
+                    }
+                }
 
-                string requestion;
-                if (SearchModel.Text == "")
-                    requestion = "SELECT Models.Name AS 'Модель', " +
-                    "Makes.Name AS 'Марка' " +
-                    "FROM " +
-                    "Models JOIN Makes ON Models.MakeId = Makes.Id ";
+                if (makeAlreadyExists)
+                    MessageBox.Show("Модель уже существует");
                 else
-                    requestion = "SELECT Models.Name AS 'Модель', " +
-                    "Makes.Name AS 'Марка' " +
-                    "FROM " +
-                    "Models JOIN Makes ON Models.MakeId = Makes.Id " +
-                    $"WHERE Name LIKE '%{SearchModel.Text}%' ";
+                {
+                    SqlCommand sqlCommand = new SqlCommand(
+                    "UPDATE Models " +
+                    $"SET Name = '{EditString.Text}' " +
+                    $"WHERE Name = '{selectedRow.Cells[0].Value}' ",
+                    serviceStationConnection);
 
-                UpdateTable(requestion);
-                EditString.Text = "";
-                selectedRow = null;
+                    sqlCommand.ExecuteNonQuery();
+
+                    string requestion;
+                    if (SearchModel.Text == "")
+                        requestion = "SELECT Models.Name AS 'Модель', " +
+                        "Makes.Name AS 'Марка' " +
+                        "FROM " +
+                        "Models JOIN Makes ON Models.MakeId = Makes.Id ";
+                    else
+                        requestion = "SELECT Models.Name AS 'Модель', " +
+                        "Makes.Name AS 'Марка' " +
+                        "FROM " +
+                        "Models JOIN Makes ON Models.MakeId = Makes.Id " +
+                        $"WHERE Name LIKE '%{SearchModel.Text}%' ";
+
+                    UpdateTable(requestion);
+                    EditString.Text = "";
+                    selectedRow = null;
+                }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            SqlCommand sqlCommand = new SqlCommand(
+            bool makeAlreadyExists = false;
+
+            foreach (DataGridViewRow checkingRow in Models.Rows)
+            {
+                if (checkingRow.Cells["Модель"].Value.ToString() == AddString.Text && checkingRow.Cells["Марка"].Value.ToString() == listOfMakes.SelectedValue.ToString())
+                {
+                    makeAlreadyExists = true;
+                    break;
+                }
+            }
+
+            if (makeAlreadyExists)
+                MessageBox.Show("Модель уже существует");
+            else
+            {
+                SqlCommand sqlCommand = new SqlCommand(
                 "INSERT INTO Models (Name, MakeId) " +
                 "Select " +
                 $"'{AddString.Text}', " +
                 $"(SELECT Id FROM Makes WHERE Name = '{listOfMakes.SelectedValue}') ",
                 serviceStationConnection);
 
-            sqlCommand.ExecuteNonQuery();
-            UpdateTable(
-                "SELECT Models.Name AS 'Модель', " +
-                "Makes.Name AS 'Марка' " +
-                "FROM " +
-                "Models JOIN Makes ON Models.MakeId = Makes.Id ");
+                sqlCommand.ExecuteNonQuery();
+                UpdateTable(
+                    "SELECT Models.Name AS 'Модель', " +
+                    "Makes.Name AS 'Марка' " +
+                    "FROM " +
+                    "Models JOIN Makes ON Models.MakeId = Makes.Id ");
 
-            AddString.Text = "";
-            MessageBox.Show("Модель авто успешно добавлена");
+                AddString.Text = "";
+                MessageBox.Show("Модель авто успешно добавлена");
+            }
         }
 
         private void UpdateComboBox(string request, ComboBox comboBox)

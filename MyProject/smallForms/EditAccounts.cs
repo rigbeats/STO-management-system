@@ -25,10 +25,10 @@ namespace MyProject.smallForms
 
         private void EditAccounts_Load(object sender, EventArgs e)
         {
-            UpdateAccountsTable("SELECT Login, Password FROM Users");
+            UpdateAccountsTable("SELECT Login AS 'Логин', Password AS 'Пароль' FROM Users");
         }
 
-        public void UpdateAccountsTable(string request) //Обновление значений в верхней таблице
+        public void UpdateAccountsTable(string request)
         {
             SqlDataAdapter ordersDataAdapter = new SqlDataAdapter(
                     request,
@@ -43,7 +43,7 @@ namespace MyProject.smallForms
         private void SearchAccounts_TextChanged(object sender, EventArgs e)
         {
             UpdateAccountsTable(
-                "SELECT Login, Password FROM Users " +
+                "SELECT Login AS 'Логин', Password AS 'Пароль' FROM Users " +
                 $"WHERE Login LIKE N'%{SearchAccount.Text}%' ");
         }
 
@@ -60,45 +60,77 @@ namespace MyProject.smallForms
         private void EditButton_Click(object sender, EventArgs e)
         {
             if (selectedRow == null)
-                MessageBox.Show("Выберите аккаунт, которую хотите изменить");
+                MessageBox.Show("Выберите аккаунт, который хотите изменить");
             else
             {
-                SqlCommand sqlCommand = new SqlCommand(
-                "UPDATE Users " +
-                $"SET " +
-                $"Login = N'{EditLogin.Text}', " +
-                $"Password = N'{EditPassword.Text}' " +
-                $"WHERE Login = N'{selectedRow.Cells[0].Value}' ",
-                serviceStationConnection);
+                bool makeAlreadyExists = false;
 
-                sqlCommand.ExecuteNonQuery();
+                foreach (DataGridViewRow checkingRow in accounts.Rows)
+                {
+                    if (checkingRow.Cells["Логин"].Value.ToString() == EditLogin.Text)
+                    {
+                        makeAlreadyExists = true;
+                        break;
+                    }
+                }
 
-                string requestion;
-                if (SearchAccount.Text == "")
-                    requestion = "Select Login, Password FROM Users";
+                if (makeAlreadyExists)
+                    MessageBox.Show("Логин уже занят");
                 else
-                    requestion = "SELECT Login, Password FROM Users " +
-                    $"WHERE Login LIKE N'%{SearchAccount.Text}%' ";
+                {
+                    SqlCommand sqlCommand = new SqlCommand(
+                    "UPDATE Users " +
+                    $"SET " +
+                    $"Login = N'{EditLogin.Text}', " +
+                    $"Password = N'{EditPassword.Text}' " +
+                    $"WHERE Login = N'{selectedRow.Cells[0].Value}' ",
+                    serviceStationConnection);
 
-                UpdateAccountsTable(requestion);
-                EditLogin.Text = "";
-                EditPassword.Text = "";
-                selectedRow = null;
+                    sqlCommand.ExecuteNonQuery();
+
+                    string requestion;
+                    if (SearchAccount.Text == "")
+                        requestion = "Select Login AS 'Логин', Password AS 'Пароль' FROM Users";
+                    else
+                        requestion = "SELECT Login AS 'Логин', Password AS 'Пароль' FROM Users " +
+                        $"WHERE Login LIKE N'%{SearchAccount.Text}%' ";
+
+                    UpdateAccountsTable(requestion);
+                    EditLogin.Text = "";
+                    EditPassword.Text = "";
+                    selectedRow = null;
+                }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            SqlCommand sqlCommand = new SqlCommand(
+            bool makeAlreadyExists = false;
+
+            foreach (DataGridViewRow checkingRow in accounts.Rows)
+            {
+                if (checkingRow.Cells["Логин"].Value.ToString() == AddLogin.Text)
+                {
+                    makeAlreadyExists = true;
+                    break;
+                }
+            }
+
+            if (makeAlreadyExists)
+                MessageBox.Show("Логин уже занят");
+            else
+            {
+                SqlCommand sqlCommand = new SqlCommand(
                 "INSERT INTO Users (Login, Password)" +
                 $"VALUES (N'{AddLogin.Text}', {AddPassword.Text}) ",
                 serviceStationConnection);
 
-            sqlCommand.ExecuteNonQuery();
-            UpdateAccountsTable("Select Login, Password FROM Users");
-            AddLogin.Text = "";
-            AddPassword.Text = "";
-            MessageBox.Show("аккаунт успешно добавлен");
+                sqlCommand.ExecuteNonQuery();
+                UpdateAccountsTable("Select Login AS 'Логин', Password AS 'Пароль' FROM Users");
+                AddLogin.Text = "";
+                AddPassword.Text = "";
+                MessageBox.Show("Аккаунт успешно добавлен");
+            }
         }
 
         private void delete_Click(object sender, EventArgs e)
@@ -109,7 +141,7 @@ namespace MyProject.smallForms
                 serviceStationConnection);
             
             sqlCommand.ExecuteNonQuery();
-            UpdateAccountsTable("Select Login, Password FROM Users");
+            UpdateAccountsTable("Select Login AS 'Логин', Password AS 'Пароль' FROM Users");
 
             MessageBox.Show("Аккаунт удален");
         }
