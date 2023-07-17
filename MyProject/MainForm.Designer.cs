@@ -51,7 +51,7 @@
             this.Makes = new System.Windows.Forms.ToolStripMenuItem();
             this.Models = new System.Windows.Forms.ToolStripMenuItem();
             this.Services = new System.Windows.Forms.ToolStripMenuItem();
-            this.аккаунтыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accounts = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -69,12 +69,11 @@
             this.listOfTasks.AllowUserToResizeRows = false;
             this.listOfTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listOfTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listOfTasks.Location = new System.Drawing.Point(11, 23);
-            this.listOfTasks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listOfTasks.Location = new System.Drawing.Point(8, 19);
             this.listOfTasks.Name = "listOfTasks";
             this.listOfTasks.ReadOnly = true;
             this.listOfTasks.RowHeadersWidth = 51;
-            this.listOfTasks.Size = new System.Drawing.Size(460, 203);
+            this.listOfTasks.Size = new System.Drawing.Size(345, 165);
             this.listOfTasks.TabIndex = 3;
             // 
             // menuStrip1
@@ -82,8 +81,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1685, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -95,25 +94,22 @@
             this.orders.AllowUserToResizeRows = false;
             this.orders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.orders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orders.Location = new System.Drawing.Point(40, 48);
-            this.orders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.orders.Location = new System.Drawing.Point(28, 51);
             this.orders.Name = "orders";
             this.orders.ReadOnly = true;
             this.orders.RowHeadersWidth = 51;
             this.orders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.orders.Size = new System.Drawing.Size(1604, 418);
+            this.orders.Size = new System.Drawing.Size(1203, 340);
             this.orders.TabIndex = 5;
             this.orders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Orders_CellClick);
-            this.orders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orders_CellContentClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(36, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(25, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 24);
+            this.label1.Size = new System.Drawing.Size(62, 18);
             this.label1.TabIndex = 6;
             this.label1.Text = "Заявки:";
             // 
@@ -121,10 +117,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(1363, 495);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(1020, 414);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(201, 24);
+            this.label2.Size = new System.Drawing.Size(156, 18);
             this.label2.TabIndex = 7;
             this.label2.Text = "Управление заявкой:";
             // 
@@ -140,20 +135,17 @@
             this.groupBox1.Controls.Add(this.editButton);
             this.groupBox1.Controls.Add(this.deleteButton);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox1.Location = new System.Drawing.Point(1336, 521);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(1000, 435);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(257, 286);
+            this.groupBox1.Size = new System.Drawing.Size(193, 232);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
             // performButton
             // 
-            this.performButton.Location = new System.Drawing.Point(47, 201);
-            this.performButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.performButton.Location = new System.Drawing.Point(35, 163);
             this.performButton.Name = "performButton";
-            this.performButton.Size = new System.Drawing.Size(163, 65);
+            this.performButton.Size = new System.Drawing.Size(122, 53);
             this.performButton.TabIndex = 2;
             this.performButton.Text = "Выполнить";
             this.performButton.UseVisualStyleBackColor = true;
@@ -161,10 +153,9 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(47, 111);
-            this.editButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editButton.Location = new System.Drawing.Point(35, 90);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(163, 65);
+            this.editButton.Size = new System.Drawing.Size(122, 53);
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Редактировать";
             this.editButton.UseVisualStyleBackColor = true;
@@ -172,10 +163,9 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(47, 23);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteButton.Location = new System.Drawing.Point(35, 19);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(163, 65);
+            this.deleteButton.Size = new System.Drawing.Size(122, 53);
             this.deleteButton.TabIndex = 0;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -186,11 +176,9 @@
             this.groupBox2.Controls.Add(this.totalCost);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.listOfTasks);
-            this.groupBox2.Location = new System.Drawing.Point(723, 521);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(540, 435);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(480, 286);
+            this.groupBox2.Size = new System.Drawing.Size(360, 232);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             // 
@@ -199,11 +187,10 @@
             this.totalCost.BackColor = System.Drawing.SystemColors.ControlLight;
             this.totalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.totalCost.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.totalCost.Location = new System.Drawing.Point(285, 239);
-            this.totalCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.totalCost.Location = new System.Drawing.Point(214, 194);
             this.totalCost.Name = "totalCost";
             this.totalCost.ReadOnly = true;
-            this.totalCost.Size = new System.Drawing.Size(141, 30);
+            this.totalCost.Size = new System.Drawing.Size(107, 25);
             this.totalCost.TabIndex = 0;
             this.totalCost.Text = "";
             // 
@@ -211,10 +198,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(205, 242);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(154, 197);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 24);
+            this.label3.Size = new System.Drawing.Size(54, 18);
             this.label3.TabIndex = 4;
             this.label3.Text = "Итого:";
             // 
@@ -229,11 +215,9 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(83, 521);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(60, 435);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(509, 286);
+            this.groupBox3.Size = new System.Drawing.Size(382, 232);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             // 
@@ -242,10 +226,9 @@
             this.listOfUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.listOfUsers.Enabled = false;
             this.listOfUsers.FormattingEnabled = true;
-            this.listOfUsers.Location = new System.Drawing.Point(209, 119);
-            this.listOfUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listOfUsers.Location = new System.Drawing.Point(157, 97);
             this.listOfUsers.Name = "listOfUsers";
-            this.listOfUsers.Size = new System.Drawing.Size(217, 24);
+            this.listOfUsers.Size = new System.Drawing.Size(164, 21);
             this.listOfUsers.TabIndex = 22;
             this.listOfUsers.DropDown += new System.EventHandler(this.listOfUsers_DropDown);
             // 
@@ -253,20 +236,18 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(27, 118);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(20, 96);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 24);
+            this.label9.Size = new System.Drawing.Size(114, 18);
             this.label9.TabIndex = 21;
             this.label9.Text = "Пользователь:";
             // 
             // addButton
             // 
             this.addButton.Enabled = false;
-            this.addButton.Location = new System.Drawing.Point(335, 207);
-            this.addButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addButton.Location = new System.Drawing.Point(251, 168);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(163, 65);
+            this.addButton.Size = new System.Drawing.Size(122, 53);
             this.addButton.TabIndex = 20;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
@@ -275,10 +256,9 @@
             // registrationNumber
             // 
             this.registrationNumber.Enabled = false;
-            this.registrationNumber.Location = new System.Drawing.Point(209, 167);
-            this.registrationNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.registrationNumber.Location = new System.Drawing.Point(157, 136);
             this.registrationNumber.Name = "registrationNumber";
-            this.registrationNumber.Size = new System.Drawing.Size(217, 22);
+            this.registrationNumber.Size = new System.Drawing.Size(164, 20);
             this.registrationNumber.TabIndex = 19;
             // 
             // listOfModels
@@ -286,10 +266,9 @@
             this.listOfModels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.listOfModels.Enabled = false;
             this.listOfModels.FormattingEnabled = true;
-            this.listOfModels.Location = new System.Drawing.Point(209, 73);
-            this.listOfModels.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listOfModels.Location = new System.Drawing.Point(157, 59);
             this.listOfModels.Name = "listOfModels";
-            this.listOfModels.Size = new System.Drawing.Size(217, 24);
+            this.listOfModels.Size = new System.Drawing.Size(164, 21);
             this.listOfModels.TabIndex = 18;
             // 
             // listOfMakes
@@ -297,10 +276,9 @@
             this.listOfMakes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.listOfMakes.Enabled = false;
             this.listOfMakes.FormattingEnabled = true;
-            this.listOfMakes.Location = new System.Drawing.Point(209, 27);
-            this.listOfMakes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listOfMakes.Location = new System.Drawing.Point(157, 22);
             this.listOfMakes.Name = "listOfMakes";
-            this.listOfMakes.Size = new System.Drawing.Size(217, 24);
+            this.listOfMakes.Size = new System.Drawing.Size(164, 21);
             this.listOfMakes.TabIndex = 17;
             this.listOfMakes.DropDown += new System.EventHandler(this.listOfMakes_DropDown);
             this.listOfMakes.SelectionChangeCommitted += new System.EventHandler(this.listOfMakes_SelectionChangeCommitted);
@@ -309,10 +287,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(27, 166);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(20, 135);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 24);
+            this.label8.Size = new System.Drawing.Size(90, 18);
             this.label8.TabIndex = 16;
             this.label8.Text = "Гос. номер:";
             // 
@@ -320,10 +297,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(27, 70);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(20, 57);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 24);
+            this.label7.Size = new System.Drawing.Size(104, 18);
             this.label7.TabIndex = 15;
             this.label7.Text = "Модель авто:";
             // 
@@ -331,10 +307,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(27, 26);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(20, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 24);
+            this.label6.Size = new System.Drawing.Size(93, 18);
             this.label6.TabIndex = 14;
             this.label6.Text = "Марка авто:";
             // 
@@ -342,10 +317,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(79, 495);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(57, 414);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(219, 24);
+            this.label4.Size = new System.Drawing.Size(170, 18);
             this.label4.TabIndex = 11;
             this.label4.Text = "Формирование заявки:";
             // 
@@ -353,10 +327,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(719, 495);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(537, 414);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 24);
+            this.label5.Size = new System.Drawing.Size(60, 18);
             this.label5.TabIndex = 12;
             this.label5.Text = "Услуги:";
             // 
@@ -366,6 +339,7 @@
             this.ToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menuStrip2.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip2.TabIndex = 13;
             this.menuStrip2.Text = "menuStrip2";
@@ -376,7 +350,7 @@
             this.Makes,
             this.Models,
             this.Services,
-            this.аккаунтыToolStripMenuItem});
+            this.accounts});
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
             this.ToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
             this.ToolStripMenuItem.Text = "Администрирование";
@@ -402,18 +376,19 @@
             this.Services.Text = "Услуги";
             this.Services.Click += new System.EventHandler(this.Services_Click);
             // 
-            // аккаунтыToolStripMenuItem
+            // accounts
             // 
-            this.аккаунтыToolStripMenuItem.Name = "аккаунтыToolStripMenuItem";
-            this.аккаунтыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.аккаунтыToolStripMenuItem.Text = "Аккаунты";
+            this.accounts.Name = "accounts";
+            this.accounts.Size = new System.Drawing.Size(180, 22);
+            this.accounts.Text = "Аккаунты";
+            this.accounts.Click += new System.EventHandler(this.accounts_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1685, 838);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox3);
@@ -425,7 +400,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
@@ -476,6 +450,6 @@
         private System.Windows.Forms.ToolStripMenuItem Makes;
         private System.Windows.Forms.ToolStripMenuItem Models;
         private System.Windows.Forms.ToolStripMenuItem Services;
-        private System.Windows.Forms.ToolStripMenuItem аккаунтыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accounts;
     }
 }

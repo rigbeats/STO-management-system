@@ -46,7 +46,6 @@ namespace MyProject
 
 
             UpdateOrdersTable();
-            row = orders.Rows[0];
             UpdateListOfTasksTable();
         }
 
@@ -198,7 +197,7 @@ namespace MyProject
 
         public void UpdateListOfTasksTable() //Обновление значений в нижней таблице
         {
-            if (row.Index >= 0 && row.Index < orders.Rows.Count)
+            if (row != null && row.Index >= 0 && row.Index < orders.Rows.Count)
             {
                 totalCost.Clear();
 
@@ -276,9 +275,10 @@ namespace MyProject
             editTypesOfWorks.Show();
         }
 
-        private void orders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void accounts_Click(object sender, EventArgs e)
         {
-
+            EditAccounts editAccounts = new EditAccounts(serviceStationConnection);
+            editAccounts.Show();
         }
     }
 }
