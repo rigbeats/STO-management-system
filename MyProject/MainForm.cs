@@ -52,8 +52,11 @@ namespace MyProject
 
         private void Orders_CellClick(object sender, DataGridViewCellEventArgs e) //Обработка нажатия на строку в верхней таблице
         {
-            row = orders.Rows[e.RowIndex];
-            UpdateListOfTasksTable();
+            if (e.RowIndex >= 0)
+            {
+                row = orders.Rows[e.RowIndex];
+                UpdateListOfTasksTable();
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e) //Обработка нажатия на кнопку "Удалить" заявку

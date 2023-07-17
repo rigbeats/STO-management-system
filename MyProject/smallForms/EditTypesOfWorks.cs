@@ -48,9 +48,12 @@ namespace MyProject.smallForms
 
         private void Makes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedRow = Services.Rows[e.RowIndex];
-            EditName.Text = (string)selectedRow.Cells[0].Value;
-            EditPrice.Text = Convert.ToString(selectedRow.Cells[1].Value);
+            if (e.RowIndex >= 0)
+            {
+                selectedRow = Services.Rows[e.RowIndex];
+                EditName.Text = (string)selectedRow.Cells[0].Value;
+                EditPrice.Text = Convert.ToString(selectedRow.Cells[1].Value);
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)

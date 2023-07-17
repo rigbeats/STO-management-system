@@ -59,8 +59,11 @@ namespace MyProject.smallForms
 
         private void Models_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedRow = Models.Rows[e.RowIndex];
-            EditString.Text = (string)selectedRow.Cells[0].Value;
+            if (e.RowIndex >= 0)
+            {
+                selectedRow = Models.Rows[e.RowIndex];
+                EditString.Text = (string)selectedRow.Cells[0].Value;
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
