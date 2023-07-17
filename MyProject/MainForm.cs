@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using MyProject.smallForms;
 
@@ -40,6 +41,7 @@ namespace MyProject
                 listOfUsers.Enabled = true;
                 registrationNumber.Enabled = true;
                 addButton.Enabled = true;
+                ToolStripMenuItem.Enabled = true;
             }
 
 
@@ -159,7 +161,8 @@ namespace MyProject
                     "FROM " +
                     "Makes JOIN Orders ON Makes.Id = Orders.MakeId " +
                     "JOIN Models ON Orders.ModelId = Models.Id " +
-                    "JOIN Users ON Orders.UserId = Users.Id ",
+                    "JOIN Users ON Orders.UserId = Users.Id " +
+                    "ORDER BY Orders.Date DESC ",
                     serviceStationConnection
                     );
             }
@@ -178,7 +181,8 @@ namespace MyProject
                     "JOIN Models ON Orders.ModelId = Models.Id " +
                     "JOIN Users ON Orders.UserId = Users.Id " +
                     $"WHERE Users.Login = '{user.Login}' " +
-                    "AND Orders.Status = N'В процессе' ",
+                    "AND Orders.Status = N'В процессе' " +
+                    "ORDER BY Orders.Date DESC ",
                     serviceStationConnection
                     );
             }
@@ -249,6 +253,24 @@ namespace MyProject
                 }
             }
             comboBox.DataSource = strings;
+        }
+
+        private void Makes_Click(object sender, EventArgs e)
+        {
+            EditMakes editMakes = new EditMakes(serviceStationConnection);
+            editMakes.Show();
+        }
+
+        private void Models_Click(object sender, EventArgs e)
+        {
+            EditModels editModels = new EditModels(serviceStationConnection);
+            editModels.Show();
+        }
+
+        private void Services_Click(object sender, EventArgs e)
+        {
+            EditTypesOfWorks editTypesOfWorks = new EditTypesOfWorks(serviceStationConnection);
+            editTypesOfWorks.Show();
         }
 
         private void orders_CellContentClick(object sender, DataGridViewCellEventArgs e)

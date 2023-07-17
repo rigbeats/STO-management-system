@@ -89,6 +89,24 @@
     <Compile Include="smallForms\DeleteOrder.Designer.cs">
       <DependentUpon>DeleteOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="smallForms\EditTypesOfWorks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="smallForms\EditTypesOfWorks.Designer.cs">
+      <DependentUpon>EditTypesOfWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="smallForms\EditMakes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="smallForms\EditMakes.Designer.cs">
+      <DependentUpon>EditMakes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="smallForms\EditModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="smallForms\EditModels.Designer.cs">
+      <DependentUpon>EditModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
@@ -111,6 +129,15 @@
     </Compile>
     <EmbeddedResource Include="smallForms\DeleteOrder.resx">
       <DependentUpon>DeleteOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="smallForms\EditMakes.resx">
+      <DependentUpon>EditMakes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="smallForms\EditModels.resx">
+      <DependentUpon>EditModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="smallForms\EditTypesOfWorks.resx">
+      <DependentUpon>EditTypesOfWorks.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

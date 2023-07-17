@@ -46,12 +46,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Makes = new System.Windows.Forms.ToolStripMenuItem();
+            this.Models = new System.Windows.Forms.ToolStripMenuItem();
+            this.Services = new System.Windows.Forms.ToolStripMenuItem();
+            this.аккаунтыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.listOfTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // listOfTasks
@@ -73,7 +80,7 @@
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1685, 24);
@@ -353,6 +360,54 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Услуги:";
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip2.TabIndex = 13;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // ToolStripMenuItem
+            // 
+            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Makes,
+            this.Models,
+            this.Services,
+            this.аккаунтыToolStripMenuItem});
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
+            this.ToolStripMenuItem.Text = "Администрирование";
+            // 
+            // Makes
+            // 
+            this.Makes.Name = "Makes";
+            this.Makes.Size = new System.Drawing.Size(180, 22);
+            this.Makes.Text = "Марки авто";
+            this.Makes.Click += new System.EventHandler(this.Makes_Click);
+            // 
+            // Models
+            // 
+            this.Models.Name = "Models";
+            this.Models.Size = new System.Drawing.Size(180, 22);
+            this.Models.Text = "Модели авто";
+            this.Models.Click += new System.EventHandler(this.Models_Click);
+            // 
+            // Services
+            // 
+            this.Services.Name = "Services";
+            this.Services.Size = new System.Drawing.Size(180, 22);
+            this.Services.Text = "Услуги";
+            this.Services.Click += new System.EventHandler(this.Services_Click);
+            // 
+            // аккаунтыToolStripMenuItem
+            // 
+            this.аккаунтыToolStripMenuItem.Name = "аккаунтыToolStripMenuItem";
+            this.аккаунтыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.аккаунтыToolStripMenuItem.Text = "Аккаунты";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -368,6 +423,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.orders);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
@@ -382,6 +438,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,5 +471,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox listOfUsers;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Makes;
+        private System.Windows.Forms.ToolStripMenuItem Models;
+        private System.Windows.Forms.ToolStripMenuItem Services;
+        private System.Windows.Forms.ToolStripMenuItem аккаунтыToolStripMenuItem;
     }
 }
