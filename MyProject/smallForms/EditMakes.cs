@@ -24,10 +24,10 @@ namespace MyProject.smallForms
 
         private void EditMakes_Load(object sender, EventArgs e)
         {
-            UpdateMakesTable("SELECT Name FROM Makes");
+            UpdateMakesTable("SELECT Name AS 'Название' FROM Makes");
         }
 
-        public void UpdateMakesTable(string request) //Обновление значений в верхней таблице
+        public void UpdateMakesTable(string request)
         {
             SqlDataAdapter ordersDataAdapter = new SqlDataAdapter(
                     request,
@@ -42,7 +42,7 @@ namespace MyProject.smallForms
         private void SearchMake_TextChanged(object sender, EventArgs e)
         {
             UpdateMakesTable(
-                "SELECT Name FROM Makes " +
+                "SELECT Name AS 'Название' FROM Makes " +
                 $"WHERE Name LIKE '%{SearchMake.Text}%' ");
         }
 
@@ -61,38 +61,70 @@ namespace MyProject.smallForms
                 MessageBox.Show("Выберите название марки, которое хотите изменить");
             else
             {
-                SqlCommand sqlCommand = new SqlCommand(
-                "UPDATE Makes " +
-                $"SET Name = '{EditString.Text}' " +
-                $"WHERE Name = '{selectedRow.Cells[0].Value}' ",
-                serviceStationConnection);
+                bool makeAlreadyExists = false;
 
-                sqlCommand.ExecuteNonQuery();
+                foreach (DataGridViewRow checkingRow in Makes.Rows)
+                {
+                    if (checkingRow.Cells["Название"].Value.ToString() == EditString.Text)
+                    {
+                        makeAlreadyExists = true;
+                        break;
+                    }
+                }
 
-                string requestion;
-                if (SearchMake.Text == "")
-                    requestion = "SELECT Name FROM Makes";
+                if (makeAlreadyExists)
+                    MessageBox.Show("Марка уже существует");
                 else
-                    requestion = "SELECT Name FROM Makes " +
-                                $"WHERE Name LIKE '%{SearchMake.Text}%' ";
+                {
+                    SqlCommand sqlCommand = new SqlCommand(
+                    "UPDATE Makes " +
+                    $"SET Name = '{EditString.Text}' " +
+                    $"WHERE Name = '{selectedRow.Cells[0].Value}' ",
+                    serviceStationConnection);
 
-                UpdateMakesTable(requestion);
-                EditString.Text = "";
-                selectedRow = null;
+                    sqlCommand.ExecuteNonQuery();
+
+                    string requestion;
+                    if (SearchMake.Text == "")
+                        requestion = "SELECT Name AS 'Название' FROM Makes";
+                    else
+                        requestion = "SELECT Name AS 'Название' FROM Makes " +
+                                    $"WHERE Name LIKE '%{SearchMake.Text}%' ";
+
+                    UpdateMakesTable(requestion);
+                    EditString.Text = "";
+                    selectedRow = null;
+                }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            SqlCommand sqlCommand = new SqlCommand(
+            bool makeAlreadyExists = false;
+
+            foreach (DataGridViewRow checkingRow in Makes.Rows)
+            {
+                if (checkingRow.Cells["Название"].Value.ToString() == AddString.Text)
+                {
+                    makeAlreadyExists = true;
+                    break;
+                }
+            }
+
+            if (makeAlreadyExists)
+                MessageBox.Show("Марка уже существует");
+            else
+            {
+                SqlCommand sqlCommand = new SqlCommand(
                 "INSERT INTO Makes (Name)" +
                 $"VALUES ('{AddString.Text}') ",
                 serviceStationConnection);
 
-            sqlCommand.ExecuteNonQuery();
-            UpdateMakesTable("Select Name FROM Makes");
-            AddString.Text = "";
-            MessageBox.Show("Марка авто успешно добавлена");
+                sqlCommand.ExecuteNonQuery();
+                UpdateMakesTable("Select Name FROM Makes");
+                AddString.Text = "";
+                MessageBox.Show("Марка авто успешно добавлена");
+            }
         }
     }
 }
