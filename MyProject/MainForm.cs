@@ -41,7 +41,7 @@ namespace MyProject
                 listOfUsers.Enabled = true;
                 registrationNumber.Enabled = true;
                 addButton.Enabled = true;
-                ToolStripMenuItem.Enabled = true;
+                adminisrationMenu.Enabled = true;
             }
 
 

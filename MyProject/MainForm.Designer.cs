@@ -47,7 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminisrationMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.Makes = new System.Windows.Forms.ToolStripMenuItem();
             this.Models = new System.Windows.Forms.ToolStripMenuItem();
             this.Services = new System.Windows.Forms.ToolStripMenuItem();
@@ -336,7 +336,7 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem});
+            this.adminisrationMenu});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -344,16 +344,17 @@
             this.menuStrip2.TabIndex = 13;
             this.menuStrip2.Text = "menuStrip2";
             // 
-            // ToolStripMenuItem
+            // adminisrationMenu
             // 
-            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adminisrationMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Makes,
             this.Models,
             this.Services,
             this.accounts});
-            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
-            this.ToolStripMenuItem.Text = "Администрирование";
+            this.adminisrationMenu.Enabled = false;
+            this.adminisrationMenu.Name = "adminisrationMenu";
+            this.adminisrationMenu.Size = new System.Drawing.Size(134, 20);
+            this.adminisrationMenu.Text = "Администрирование";
             // 
             // Makes
             // 
@@ -446,7 +447,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox listOfUsers;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminisrationMenu;
         private System.Windows.Forms.ToolStripMenuItem Makes;
         private System.Windows.Forms.ToolStripMenuItem Models;
         private System.Windows.Forms.ToolStripMenuItem Services;
