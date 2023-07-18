@@ -52,6 +52,8 @@ namespace MyProject
 			DataSet dataSet2 = new DataSet();
 			ordersDataAdapter2.Fill(dataSet2);
 			gvCurrentOrder.DataSource = dataSet2.Tables[0];
+
+			UpdateTextBox();
 		}
 
 		private void editClose_Click(object sender, EventArgs e)
@@ -59,38 +61,12 @@ namespace MyProject
 			this.Close();
 		}
 
-		private void editHelp_Click(object sender, EventArgs e)
-		{
-			MessageBox.Show("Здесь можно изменить заказ");          
-		}
-
-		private void orderedService_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-
-		}
-
-		private void gvListOfServices_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void gvCurrentOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
 		private void buttonRemoveService_Click(object sender, EventArgs e)
 		{
 			var row = gvCurrentOrder.SelectedRows[0];
-			// Check if a row is selected in gvCurrentOrder
+
 			if (gvCurrentOrder.SelectedRows.Count > 0)
 			{
-				// Remove the selected row from gvCurrentOrder
 				SqlCommand cmd = new SqlCommand(
 					"DELETE FROM ListOfTasks " +
 					$"WHERE UserId = (SELECT Id FROM Users WHERE Login = N'{user.Login}')  " +
@@ -101,10 +77,12 @@ namespace MyProject
 				gvCurrentOrder.Rows.Remove(gvCurrentOrder.SelectedRows[0]);
 				gvCurrentOrder.Refresh();
 				cmd.ExecuteNonQuery();
+
+				UpdateTextBox();
 			}
 			else
 			{
-				MessageBox.Show("Please select a row in the Current Order.");
+				MessageBox.Show("Пожалуйста, выберите строку в текущем заказе");
 			}
 		}
 
@@ -119,7 +97,6 @@ namespace MyProject
                 {
                     if (checkingRow.Cells["Название"].Value != null && selectedRow.Cells["Название"].Value != null)
                     {
-                        // Compare the values of the service columns to check for a match
                         if (checkingRow.Cells["Название"].Value.ToString() == selectedRow.Cells["Название"].Value.ToString())
                         {
                             serviceAlreadyExists = true;
@@ -135,11 +112,13 @@ namespace MyProject
                 else
                 {
                     addService();
+					UpdateTextBox();
                 }
             }
             else
             {
                 addService();
+				UpdateTextBox();
             }
 
         }
@@ -149,13 +128,9 @@ namespace MyProject
 			{
 				var row = gvListOfServices.SelectedRows[0];
 
-				// Get the DataTable bound to gvCurrentOrder
 				DataTable dt = (DataTable)gvCurrentOrder.DataSource;
-
-				// Create a new row with the same schema as the DataTable
 				DataRow newRow = dt.NewRow();
 
-				// Copy the cell values from the selected row to the new row
 				for (int i = 0; i < row.Cells.Count; i++)
 				{
 					newRow[i] = row.Cells[i].Value;
@@ -173,7 +148,6 @@ namespace MyProject
 					connectionString
 					);
 
-				// Refresh the DataGridView to reflect the changes
 				gvCurrentOrder.Refresh();
 				cmd.ExecuteNonQuery();
 			}
@@ -193,5 +167,19 @@ namespace MyProject
 		{
 			this.Close();
 		}
+
+		private void UpdateTextBox()
+		{
+            totalCost.Clear();
+            SqlCommand command = new SqlCommand(
+                    "SELECT SUM(Price) " +
+                    "FROM TypesOfWorks " +
+                    "JOIN ListOfTasks ON TypesOfWorks.Id = ListOfTasks.TypeOfWorkId " +
+                    $"WHERE OrderId = {idOfOrder} ",
+                    connectionString);
+
+            var cost = Convert.ToString(command.ExecuteScalar());
+            totalCost.AppendText(cost);
+        }
 	}
 }
