@@ -234,7 +234,7 @@ namespace MyProject
         private void editButton_Click(object sender, EventArgs e)
         {
             if (row == null)
-                MessageBox.Show("Выберите заявку, которую хотите удалить");
+                MessageBox.Show("Выберите заявку, которую хотите редактировать");
             else
             {
                 EditOrder editOrder = new EditOrder((int)row.Cells[0].Value, serviceStationConnection, user, this);
